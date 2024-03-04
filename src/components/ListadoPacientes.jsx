@@ -1,31 +1,53 @@
 import Pacientes from "./Pacientes";
 
 
-function ListadoPacientes(){
-    return(
+function ListadoPacientes({ pacientes, setPaciente }) {
+
+    return (
         <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
-            <h2 className="font-black text-3xl text-center">Listado Pacientes</h2>
+
+            {pacientes && pacientes.length ? (
+                <>
+                    <h2 className="font-black text-3xl text-center">Listado Pacientes</h2>
 
 
-            <p className="text-xl text-center mb-10 mt-5">
-                Administra tus {""}
-                <span className="text-indigo-600 font-bold ">Pacientes y Citas </span>
-            </p>
+                    <p className="text-xl text-center mb-10 mt-5">
+                        Administra tus {""}
+                        <span className="text-indigo-600 font-bold ">Pacientes y Citas </span>
+                    </p>
 
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            <Pacientes/>
-            
+                    {pacientes.map(paciente => (
+
+                        <Pacientes
+                            key={paciente.id}
+                            paciente={paciente}
+                            setPaciente ={setPaciente}
+                        />
+
+                    ))}
+
+                </>
+
+            ) : (<>
+                <h2 className="font-black text-3xl text-center">No hay Pacientes</h2>
+
+
+                <p className="text-xl text-center mb-10 mt-5">
+                    Comienza agregando pacientes {""}
+                    <span className="text-indigo-600 font-bold ">y aparecerán en este lugar </span>
+                </p>
+            </>)}
+
+
+
+
+
+
+
 
 
         </div>
-       
+
     )
 }
 
